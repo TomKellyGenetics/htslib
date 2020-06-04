@@ -55,48 +55,38 @@ void write_bcf(char *fname)
 
     // Create VCF header
     kstring_t str = {0,0,0};
-    check0(bcf_hdr_append(hdr, "##fileDate=20090805"));
-    check0(bcf_hdr_append(hdr, "##FORMAT=<ID=UF,Number=1,Type=Integer,Description=\"Unused FORMAT\">"));
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=UI,Number=1,Type=Integer,Description=\"Unused INFO\">"));
-    check0(bcf_hdr_append(hdr, "##FILTER=<ID=Flt,Description=\"Unused FILTER\">"));
-    check0(bcf_hdr_append(hdr, "##unused=<XX=AA,Description=\"Unused generic\">"));
-    check0(bcf_hdr_append(hdr, "##unused=unformatted text 1"));
-    check0(bcf_hdr_append(hdr, "##unused=unformatted text 2"));
-    check0(bcf_hdr_append(hdr, "##contig=<ID=Unused,length=1>"));
-    check0(bcf_hdr_append(hdr, "##source=myImputationProgramV3.1"));
-    check0(bcf_hdr_append(hdr, "##reference=file:///seq/references/1000GenomesPilot-NCBI36.fasta"));
-    check0(bcf_hdr_append(hdr, "##contig=<ID=20,length=62435964,assembly=B36,md5=f126cdf8a6e0c7f379d618ff66beb2da,species=\"Homo sapiens\",taxonomy=x>"));
-    check0(bcf_hdr_append(hdr, "##phasing=partial"));
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=NS,Number=1,Type=Integer,Description=\"Number of Samples With Data\">"));
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=DP,Number=1,Type=Integer,Description=\"Total Depth\">"));
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=NEG,Number=.,Type=Integer,Description=\"Test -ve Numbers\">"));
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=AF,Number=A,Type=Float,Description=\"Allele Frequency\">"));
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=AA,Number=1,Type=String,Description=\"Ancestral Allele\">"));
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=DB,Number=0,Type=Flag,Description=\"dbSNP membership, build 129\">"));
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=H2,Number=0,Type=Flag,Description=\"HapMap2 membership\">"));
-    check0(bcf_hdr_append(hdr, "##FILTER=<ID=q10,Description=\"Quality below 10\">"));
-    check0(bcf_hdr_append(hdr, "##FILTER=<ID=s50,Description=\"Less than half of samples have data\">"));
-    check0(bcf_hdr_append(hdr, "##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">"));
-    check0(bcf_hdr_append(hdr, "##FORMAT=<ID=GQ,Number=1,Type=Integer,Description=\"Genotype Quality\">"));
-    check0(bcf_hdr_append(hdr, "##FORMAT=<ID=DP,Number=1,Type=Integer,Description=\"Read Depth\">"));
-    check0(bcf_hdr_append(hdr, "##FORMAT=<ID=HQ,Number=2,Type=Integer,Description=\"Haplotype Quality\">"));
-    check0(bcf_hdr_append(hdr, "##FORMAT=<ID=TS,Number=1,Type=String,Description=\"Test String 1\">"));
+    bcf_hdr_append(hdr, "##fileDate=20090805");
+    bcf_hdr_append(hdr, "##FORMAT=<ID=UF,Number=1,Type=Integer,Description=\"Unused FORMAT\">");
+    bcf_hdr_append(hdr, "##INFO=<ID=UI,Number=1,Type=Integer,Description=\"Unused INFO\">");
+    bcf_hdr_append(hdr, "##FILTER=<ID=Flt,Description=\"Unused FILTER\">");
+    bcf_hdr_append(hdr, "##unused=<XX=AA,Description=\"Unused generic\">");
+    bcf_hdr_append(hdr, "##unused=unformatted text 1");
+    bcf_hdr_append(hdr, "##unused=unformatted text 2");
+    bcf_hdr_append(hdr, "##contig=<ID=Unused,length=62435964>");
+    bcf_hdr_append(hdr, "##source=myImputationProgramV3.1");
+    bcf_hdr_append(hdr, "##reference=file:///seq/references/1000GenomesPilot-NCBI36.fasta");
+    bcf_hdr_append(hdr, "##contig=<ID=20,length=62435964,assembly=B36,md5=f126cdf8a6e0c7f379d618ff66beb2da,species=\"Homo sapiens\",taxonomy=x>");
+    bcf_hdr_append(hdr, "##phasing=partial");
+    bcf_hdr_append(hdr, "##INFO=<ID=NS,Number=1,Type=Integer,Description=\"Number of Samples With Data\">");
+    bcf_hdr_append(hdr, "##INFO=<ID=DP,Number=1,Type=Integer,Description=\"Total Depth\">");
+    bcf_hdr_append(hdr, "##INFO=<ID=NEG,Number=.,Type=Integer,Description=\"Test Negative Numbers\">");
+    bcf_hdr_append(hdr, "##INFO=<ID=AF,Number=A,Type=Float,Description=\"Allele Frequency\">");
+    bcf_hdr_append(hdr, "##INFO=<ID=AA,Number=1,Type=String,Description=\"Ancestral Allele\">");
+    bcf_hdr_append(hdr, "##INFO=<ID=DB,Number=0,Type=Flag,Description=\"dbSNP membership, build 129\">");
+    bcf_hdr_append(hdr, "##INFO=<ID=H2,Number=0,Type=Flag,Description=\"HapMap2 membership\">");
+    bcf_hdr_append(hdr, "##FILTER=<ID=q10,Description=\"Quality below 10\">");
+    bcf_hdr_append(hdr, "##FILTER=<ID=s50,Description=\"Less than 50% of samples have data\">");
+    bcf_hdr_append(hdr, "##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">");
+    bcf_hdr_append(hdr, "##FORMAT=<ID=GQ,Number=1,Type=Integer,Description=\"Genotype Quality\">");
+    bcf_hdr_append(hdr, "##FORMAT=<ID=DP,Number=1,Type=Integer,Description=\"Read Depth\">");
+    bcf_hdr_append(hdr, "##FORMAT=<ID=HQ,Number=2,Type=Integer,Description=\"Haplotype Quality\">");
+    bcf_hdr_append(hdr, "##FORMAT=<ID=TS,Number=1,Type=String,Description=\"Test String\">");
 
-    // Try a few header modifications
-    bcf_hdr_remove(hdr, BCF_HL_CTG, "Unused");
-    check0(bcf_hdr_append(hdr, "##contig=<ID=Unused,length=62435964>"));
-    bcf_hdr_remove(hdr, BCF_HL_FMT, "TS");
-    check0(bcf_hdr_append(hdr, "##FORMAT=<ID=TS,Number=1,Type=String,Description=\"Test String\">"));
-    bcf_hdr_remove(hdr, BCF_HL_INFO, "NEG");
-    check0(bcf_hdr_append(hdr, "##INFO=<ID=NEG,Number=.,Type=Integer,Description=\"Test Negative Numbers\">"));
-    bcf_hdr_remove(hdr, BCF_HL_FLT, "s50");
-    check0(bcf_hdr_append(hdr, "##FILTER=<ID=s50,Description=\"Less than 50% of samples have data\">"));
-
-    check0(bcf_hdr_add_sample(hdr, "NA00001"));
-    check0(bcf_hdr_add_sample(hdr, "NA00002"));
-    check0(bcf_hdr_add_sample(hdr, "NA00003"));
-    check0(bcf_hdr_add_sample(hdr, NULL));      // to update internal structures
-    if ( bcf_hdr_write(fp, hdr)!=0 ) error("Failed to write to %s\n", fname);
+    bcf_hdr_add_sample(hdr, "NA00001");
+    bcf_hdr_add_sample(hdr, "NA00002");
+    bcf_hdr_add_sample(hdr, "NA00003");
+    bcf_hdr_add_sample(hdr, NULL);      // to update internal structures
+    bcf_hdr_write(fp, hdr);
 
 
     // Add a record
@@ -122,9 +112,9 @@ void write_bcf(char *fname)
     tmpi = 100000;
     check0(bcf_update_info_int32(hdr, rec, "DP", &tmpi, 1));
     tmpi = 14;
-    check0(bcf_update_info_int32(hdr, rec, "DP", &tmpi, 1));
+    bcf_update_info_int32(hdr, rec, "DP", &tmpi, 1);
     tmpi = -127;
-    check0(bcf_update_info_int32(hdr, rec, "NEG", &tmpi, 1));
+    bcf_update_info_int32(hdr, rec, "NEG", &tmpi, 1);
     float tmpf = 0.5;
     check0(bcf_update_info_float(hdr, rec, "AF", &tmpf, 1));
     check0(bcf_update_info_flag(hdr, rec, "DB", NULL, 1));
@@ -162,12 +152,8 @@ void write_bcf(char *fname)
     tmpia[5] = bcf_int32_missing;
     check0(bcf_update_format_int32(hdr, rec, "HQ", tmpia, bcf_hdr_nsamples(hdr)*2));
     char *tmp_str[] = {"String1","SomeOtherString2","YetAnotherString3"};
-    check0(bcf_update_format_string(hdr, rec, "TS", (const char**)tmp_str, 3));
-    tmp_str[0] = "LongerStringRequiringBufferReallocation";
-    check0(bcf_update_format_string(hdr, rec, "TS", (const char**)tmp_str, 3));
-    tmp_str[0] = "String1";
-    check0(bcf_update_format_string(hdr, rec, "TS", (const char**)tmp_str, 3));
-    if ( bcf_write1(fp, hdr, rec)!=0 ) error("Failed to write to %s\n", fname);
+    bcf_update_format_string(hdr, rec, "TS", (const char**)tmp_str, 3);
+    bcf_write1(fp, hdr, rec);
 
     // 20     1110696 . A      G,T     67   .   NS=2;DP=10;NEG=-128;AF=0.333,.;AA=T;DB GT 2 1   ./.
     bcf_clear1(rec);
@@ -178,9 +164,9 @@ void write_bcf(char *fname)
     tmpi = 2;
     check0(bcf_update_info_int32(hdr, rec, "NS", &tmpi, 1));
     tmpi = 10;
-    check0(bcf_update_info_int32(hdr, rec, "DP", &tmpi, 1));
+    bcf_update_info_int32(hdr, rec, "DP", &tmpi, 1);
     tmpi = -128;
-    check0(bcf_update_info_int32(hdr, rec, "NEG", &tmpi, 1));
+    bcf_update_info_int32(hdr, rec, "NEG", &tmpi, 1);
     float *tmpfa = (float*)malloc(2*sizeof(float));
     tmpfa[0] = 0.333;
     bcf_float_set_missing(tmpfa[1]);

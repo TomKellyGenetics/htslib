@@ -2036,13 +2036,13 @@ int bcf_enc_vint(kstring_t *s, int n, int32_t *a, int wsize)
             if (max < a[i]) max = a[i];
             if (min > a[i]) min = a[i];
         }
-        if (max <= BCF_MAX_BT_INT8 && min >= BCF_MIN_BT_INT8) {
+        if (max <= INT8_MAX && min >= INT8_MIN + 8) {
             bcf_enc_size(s, wsize, BCF_BT_INT8);
             for (i = 0; i < n; ++i)
                 if ( a[i]==bcf_int32_vector_end ) kputc(bcf_int8_vector_end, s);
                 else if ( a[i]==bcf_int32_missing ) kputc(bcf_int8_missing, s);
                 else kputc(a[i], s);
-        } else if (max <= BCF_MAX_BT_INT16 && min >= BCF_MIN_BT_INT16) {
+        } else if (max <= INT16_MAX && min >= INT16_MIN + 8) {
             uint8_t *p;
             bcf_enc_size(s, wsize, BCF_BT_INT16);
             ks_resize(s, s->l + n * sizeof(int16_t));
